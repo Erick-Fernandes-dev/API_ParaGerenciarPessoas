@@ -1,16 +1,15 @@
 package api.gerenciamentoPessoas.domain.pessoa;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import api.gerenciamentoPessoas.domain.endereco.Endereco;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
+
+
+import java.util.Date;
 
 @Table(name = "pessoas")
 @Entity(name = "Pessoa")
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -21,7 +20,16 @@ public class Pessoa {
     private Long id;
 
     private String nome;
-    private String cpf;
-    private String telefone;
-    private Integer idade;
+
+    private Date dataDeNascimento;
+
+    @Embedded
+    private Endereco endereco;
+
+    public Pessoa(DadosCadastroPessoa dados) {
+        this.nome = dados.nome();
+        this.dataDeNascimento = dados.dataDeNascimento();
+        this.endereco = new Endereco(dados.endereco());
+    }
+
 }
