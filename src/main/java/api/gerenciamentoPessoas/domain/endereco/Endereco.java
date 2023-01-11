@@ -26,4 +26,18 @@ public class Endereco {
         this.cidade = endereco.cidade();
     }
 
+    public void atualizarInformacoes(DadosEndereco endereco) {
+        if (endereco.logradouro() != null) {
+            this.logradouro = endereco.logradouro();
+        }
+        if (endereco.CEP() != null) {
+            this.CEP = endereco.CEP();
+        }
+        if (endereco.numero() != null) {
+            this.numero = endereco.numero();
+        }
+        if (endereco.cidade() != null) {
+            this.cidade = endereco.cidade();
+        }
+    }
 }
